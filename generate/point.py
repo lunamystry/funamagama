@@ -9,6 +9,3 @@ update date: 5 November 2014
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from collections import namedtuple
-
-Point = namedtuple("Point", "row col")

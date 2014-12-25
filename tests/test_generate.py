@@ -6,8 +6,17 @@ creation date: 13 December 2014
 update date: 16 December 2014
 
 """
-from generate.grid import Grid
+import pytest
 
+from generate import Grid
+from generate import Word
+
+def test_words_cant_be_less_than_2():
+    '''
+        If words are less than 2 characters you have letters
+    '''
+    with pytest.raises(ValueError):
+        Word('a', None, None)
 
 def test_place_returns_list_if_successful():
     '''

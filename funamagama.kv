@@ -1,38 +1,31 @@
 #: kivy 1.8.0
 #:import la kivy.adapters.listadapter
 #:import lbl kivy.uix.label
-#:import ok __main__
-#:import os os
 
-MainView:
-
-<TextButton@Button>:
-    bold: True
-    canvas.before:
-        Color:
-            rgba: 0, 0, 0, 0.5
-        Rectangle:
-            pos: self.pos
-            size: self.size
 
 <MainView>:
     canvas:
         Color:
-            rgba: .5, 0, .5, self.opacity - 0.2
+            rgba: .3, .2, .8, self.opacity - 0.2
         Rectangle:
             pos: self.pos
             size: self.size
+
     BoxLayout:
-        orientation: "vertical"
-        padding: "5dp"
-        spacing: '5dp'
+        orientation: 'vertical'
         BoxLayout:
-            size_hint: 1, None
-            height: "30dp"
-            spacing: '5dp'
-            TextButton:
-                id: wallpaper_dir_input
-                size_hint: 0.8, 1
-                pos_hint: {"center_x": .5}
-                multiline: False
-                text: "Game time"
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '48dp'
+            canvas:
+                Color:
+                    rgba: .3, .3, .7, 0.9
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: 'FUNamagama'
+                font_size: '30dp'
+
+        ListView:

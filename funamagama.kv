@@ -1,9 +1,7 @@
 #: kivy 1.8.0
-#:import la kivy.adapters.listadapter
-#:import lbl kivy.uix.label
-
 
 <MainView>:
+    grid: grid
     canvas:
         Color:
             rgba: .3, .2, .8, self.opacity - 0.2
@@ -28,4 +26,17 @@
                 text: 'FUNamagama'
                 font_size: '30dp'
 
-        ListView:
+        FloatLayout:
+            Grid:
+                id: grid
+                rows: 1
+
+<Grid@GridLayout>
+    pos_hint: {'center_x': .5, 'center_y': .5}
+    size_hint: .9, .9
+    canvas.before:
+        Color:
+            rgba: .2, .3, .4, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos

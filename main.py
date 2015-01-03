@@ -32,21 +32,19 @@ class GridView(GridLayout):
                 self.add_widget(Tile(text=str(letter)))
 
     def on_touch_down(self, touch):
-        color = (random(), 1, 1)
-        with self.canvas:
-            Color(*color, mode='hsv')
-            d = 10.
-            Ellipse(pos=(touch.x - d / 2, touch.y - d / 2), size=(d, d))
-            self.start = [touch.x, touch.y]
-            touch.ud['line'] = Line(points=self.start)
+        if self.collide_point(touch.x, touch.y):
+            color = (random(), random(), random(), 0.5)
+            with self.canvas:
+                Color(*color, mode='rgb')
+                width = 10.
+                self.start = [touch.x, touch.y]
+                self.end = self.start
+                touch.ud['line'] = Line(points=self.start, width=width)
 
     def on_touch_move(self, touch):
-        touch.ud['line'].points = self.start + [touch.x, touch.y]
-
-    def on_touch_up(self, touch):
-        with self.canvas:
-            d = 10.
-            Ellipse(pos=(touch.x - d / 2, touch.y - d / 2), size=(d, d))
+        if self.collide_point(touch.x, touch.y):
+            self.end = [touch.x, touch.y]
+        touch.ud['line'].points = self.start + self.end
 
 
 class MainView(AnchorLayout):

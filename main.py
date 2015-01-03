@@ -36,15 +36,22 @@ class GridView(GridLayout):
             color = (random(), random(), random(), 0.5)
             with self.canvas:
                 Color(*color, mode='rgb')
-                width = 10.
                 self.start = [touch.x, touch.y]
                 self.end = self.start
+                width = 10.
                 touch.ud['line'] = Line(points=self.start, width=width)
 
     def on_touch_move(self, touch):
         if self.collide_point(touch.x, touch.y):
             self.end = [touch.x, touch.y]
         touch.ud['line'].points = self.start + self.end
+
+    def on_touch_up(self, touch):
+        # find all the widgets on the grid which are on the path of the line
+        for child in self.children:
+            if child.collide_point(self.end[0], self.end[1]) or\
+                    child.collide_point(self.start[0], self.start[1]):
+                print(child.text)
 
 
 class MainView(AnchorLayout):
